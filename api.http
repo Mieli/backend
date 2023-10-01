@@ -1,0 +1,62 @@
+###
+POST http://localhost:3000/api/v1/tasks
+Content-Type: "application/json"
+
+{
+    "title": "Estudar mais um pouco de Golang"
+}
+
+###
+PUT  http://localhost:3000/api/v1/tasks/6516039b9122834ce28f5f48
+Content-Type: "application/json"
+
+{
+    "title": "Estudar mais um pouco de Golang Atualizado"
+}
+
+###
+GET  http://localhost:3000/api/v1/tasks/65160f688ed9a2ecd57a99e4
+
+###
+GET  http://localhost:3000/api/v1/tasks
+
+###
+DELETE  http://localhost:3000/api/v1/tasks/6516039b9122834ce28f5f48
+
+
+//  USUÁRIOS
+###
+GET  http://localhost:3000/api/v1/users
+###
+GET  http://localhost:3000/api/v1/users/6518e65d9e9263aed652a414
+###
+POST http://localhost:3000/api/v1/users
+Content-Type: "application/json"
+
+{
+    "email": "mieli@mieli.com.br",
+    "password":"secreta"
+
+}
+
+###
+PUT  http://localhost:3000/api/v1/users/6518e65d9e9263aed652a414
+Content-Type: "application/json"
+
+{
+    "email": "tikinho@doidao.com.br",
+    "password":"1234"
+}
+
+
+
+
+
+###  LOGIN
+POST http://localhost:3000/login
+Content-Type: "application/json"
+
+{
+    "email": "tiko@inho.com.br",
+    "password": "123"
+}
