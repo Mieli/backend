@@ -57,6 +57,11 @@ POST http://localhost:3000/login
 Content-Type: "application/json"
 
 {
-    "email": "tiko@inho.com.br",
-    "password": "123"
+    "email": "tikinho@doidao.com.br",
+    "password": "1234"
 }
+
+###  LOGOFF
+GET http://localhost:3000/logoff
+Content-Type: "application/json"
+

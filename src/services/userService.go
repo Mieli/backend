@@ -58,8 +58,6 @@ func (s *UserService) Add(user pkgmodels.User) error {
 		return err
 	}
 
-	fmt.Println("hashPassword => " + hashPassword)
-
 	user.Password = hashPassword
 
 	err = s.Repository.Add(user)
@@ -101,11 +99,14 @@ func (s *UserService) FindByEmail(email string) (*pkgmodels.User, error) {
 }
 
 func (s *UserService) ComparePasswords(user *pkgmodels.User, password string) (bool, error) {
-	ok := ComparePasswords(user.Password, password)
-	if !ok {
-		return false, fmt.Errorf("senhas diferentes")
+	if user != nil {
+		ok := VerifyPasswords(user.Password, password)
+		if !ok {
+			return false, fmt.Errorf("senha não confere")
+		}
+		return true, nil
 	}
-	return true, nil
+	return false, fmt.Errorf("credenciais inválidas")
 }
 
 func GenerateHashByPassword(password string) (string, error) {
@@ -120,7 +121,7 @@ func GenerateHashByPassword(password string) (string, error) {
 
 }
 
-func ComparePasswords(passwordDB, password string) bool {
+func VerifyPasswords(passwordDB, password string) bool {
 
 	// Gerar o hash SHA-256 da senha fornecida pelo usuário
 	hashedUserPassword, err := GenerateHashByPassword(password)

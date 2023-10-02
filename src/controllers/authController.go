@@ -54,7 +54,7 @@ func (ac *AuthController) Login(w http.ResponseWriter, r *http.Request) {
 	if ok {
 
 		// criar o token
-		ac.Token, _ = generateTokenJWT(*user, ac.SecretKey)
+		ac.Token, _ = GenerateTokenJWT(*user, []byte(ac.SecretKey))
 
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
@@ -76,7 +76,7 @@ func (ac *AuthController) Logoff(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func generateTokenJWT(user pkgmodels.User, key string) (string, error) {
+func GenerateTokenJWT(user pkgmodels.User, key []byte) (string, error) {
 
 	claims := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"sub":   user.ID.Hex(),

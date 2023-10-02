@@ -36,14 +36,14 @@ func TestComparePasswords(t *testing.T) {
 	userProvidedPassword := "1234"
 
 	// Teste de senha correta
-	match := pkgservice.ComparePasswords(passwordDB, userProvidedPassword)
+	match := pkgservice.VerifyPasswords(passwordDB, userProvidedPassword)
 	if !match {
 		t.Errorf("Esperado correspondência, mas não houve correspondência")
 	}
 
 	// Teste de senha incorreta
 	incorrectPassword := "senha456" // Senha diferente da armazenada no banco de dados
-	noMatch := pkgservice.ComparePasswords(passwordDB, incorrectPassword)
+	noMatch := pkgservice.VerifyPasswords(passwordDB, incorrectPassword)
 	if noMatch {
 		t.Errorf("Esperado não correspondência, mas houve correspondência")
 	}

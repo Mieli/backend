@@ -2,6 +2,7 @@ package repositories
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"os"
 	"strings"
@@ -148,7 +149,7 @@ func (r *UserRepository) FindByEmail(email string) (*pkgmodels.User, error) {
 	if err != nil {
 		if err == mongo.ErrNoDocuments {
 			// Usuário não encontrado
-			return nil, nil
+			return nil, fmt.Errorf("usuário não encontrado")
 		}
 		log.Printf("Erro ao buscar usuário: %v", err)
 		return nil, err
